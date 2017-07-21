@@ -8,4 +8,4 @@ ENV JAVA_OPTIONS -Xmx256m
 EXPOSE 8080
 
 RUN chmod -R 777 /deployments/
-ADD target/samplespringboot-0.0.1-SNAPSHOT.jar /deployments/
+ADD target/samplespringboot-0.0.1-SNAPSHOT.jar /deployments/ 
