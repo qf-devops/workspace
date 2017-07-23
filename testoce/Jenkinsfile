@@ -17,9 +17,10 @@ podTemplate(
         }
     
         stage ('Maven build'){
-            echo 'Building project'
-            sh "cd testoce"
-            sh "mvn package"
+           dir('testoce'){
+            	echo 'Building project'
+            	sh "mvn package "
+            }
         }
     
         stage ('DEV - Image build'){
