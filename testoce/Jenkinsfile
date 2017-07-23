@@ -13,11 +13,12 @@ podTemplate(
         stage ('SCM checkout'){
             echo 'Checking out git repository'
             checkout scm
-            dir testoce
+            
         }
     
         stage ('Maven build'){
             echo 'Building project'
+            sh "cd testoce"
             sh "mvn package"
         }
     
