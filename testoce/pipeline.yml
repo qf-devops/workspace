@@ -19,4 +19,4 @@ spec:
       uri: "https://github.com/prakashg1984/workplace" 
   strategy:
     jenkinsPipelineStrategy:
-      jenkinsfilePath: "Jenkinsfile"
+      jenkinsfilePath: "testoce/Jenkinsfile"
