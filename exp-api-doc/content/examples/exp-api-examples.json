@@ -1,0 +1,251 @@
+#%RAML 1.0 ExampleSpec
+|
+{
+  "popular": {
+    "productOfferings": [
+      {
+        "id": "34345",
+        "name": "AT&T Internet",
+        "imageUri": "",
+        "productOfferingPrice": [
+          {
+            "priceType": "recurring",
+            "price": {
+              "amount": "25.00",
+              "currencyCode": "EUR"
+            },
+            "recurringChargePeriod": "monthly",
+            "name": "Monthly Price"
+          },
+          {
+            "priceType": "nonrecurring",
+            "price": {
+              "amount": "699.00",
+              "currencyCode": "EUR"
+            },
+            "name": "Full Price"
+          }
+        ]
+      },
+      {
+        "id": "34345",
+        "name": "iPhone 7 Plus",
+        "imageUri": "",
+        "productOfferingPrice": [
+          {
+            "priceType": "recurring",
+            "price": {
+              "amount": "27.00",
+              "currencyCode": "EUR"
+            },
+            "recurringChargePeriod": "monthly",
+            "name": "Monthly Price"
+          },
+          {
+            "priceType": "nonrecurring",
+            "price": {
+              "amount": "799.00",
+              "currencyCode": "EUR"
+            },
+            "name": "Full Price"
+          }
+        ]
+      }
+    ]
+  },
+  "shopByDevice": {
+    "categories": [
+      {
+        "id": "-1",
+        "name": "all"
+      },
+      {
+        "id": "101",
+        "name": "Phone",
+        "selected": true
+      },
+      {
+        "id": "201",
+        "name": "Tablet"
+      },
+      {
+        "id": "301",
+        "name": "Wearable"
+      }
+    ],
+    "productOfferings": [
+      {
+        "id": "34345",
+        "name": "Samsung Galaxy S8",
+        "imageUri": "",
+        "productOfferingPrice": [
+          {
+            "priceType": "recurring",
+            "price": {
+              "amount": "25.00",
+              "currencyCode": "EUR"
+            },
+            "recurringChargePeriod": "monthly",
+            "name": "Monthly Price"
+          },
+          {
+            "priceType": "nonrecurring",
+            "price": {
+              "amount": "699.00",
+              "currencyCode": "EUR"
+            },
+            "name": "Full Price"
+          }
+        ]
+      },
+      {
+        "id": "34345",
+        "name": "iPhone 7 Plus",
+        "imageUri": "",
+        "productOfferingPrice": [
+          {
+            "priceType": "recurring",
+            "price": {
+              "amount": "27.00",
+              "currencyCode": "EUR"
+            },
+            "recurringChargePeriod": "monthly",
+            "name": "Monthly Price"
+          },
+          {
+            "priceType": "nonrecurring",
+            "price": {
+              "amount": "799.00",
+              "currencyCode": "EUR"
+            },
+            "name": "Full Price"
+          }
+        ]
+      }
+    ]
+  },
+  "shopByPlan": {
+    "categories": [
+      {
+        "id": "-1",
+        "name": "all"
+      },
+      {
+        "id": "101",
+        "name": "Family",
+        "selected": true
+      },
+      {
+        "id": "201",
+        "name": "Bundles"
+      },
+      {
+        "id": "301",
+        "name": "Sim Only"
+      }
+    ],
+    "productOfferings": [
+      {
+        "id": "34345",
+        "name": "AT&T Internet",
+        "imageUri": "",
+        "productOfferingPrice": [
+          {
+            "priceType": "recurring",
+            "price": {
+              "amount": "25.00",
+              "currencyCode": "EUR"
+            },
+            "recurringChargePeriod": "monthly",
+            "name": "Monthly Price"
+          },
+          {
+            "priceType": "nonrecurring",
+            "price": {
+              "amount": "699.00",
+              "currencyCode": "EUR"
+            },
+            "name": "Full Price"
+          }
+        ]
+      },
+      {
+        "id": "34345",
+        "name": "AT&T DirecTV+Internet",
+        "imageUri": "\"\"",
+        "productOfferingPrice": [
+          {
+            "priceType": "recurring",
+            "price": {
+              "amount": "27.00",
+              "currencyCode": "EUR"
+            },
+            "recurringChargePeriod": "monthly",
+            "name": "Monthly Price"
+          },
+          {
+            "priceType": "nonrecurring",
+            "price": {
+              "amount": "799.00",
+              "currencyCode": "EUR"
+            },
+            "name": "Full Price"
+          }
+        ]
+      }
+    ]
+  },
+  "mycart": {
+    "totalPrice": [
+      {
+        "priceType": "recurring",
+        "price": {
+          "amount": "27.00",
+          "currencyCode": "EUR"
+        },
+        "recurringChargePeriod": "monthly",
+        "name": "Monthly Price"
+      },
+      {
+        "priceType": "nonrecurring",
+        "price": {
+          "amount": "199.00",
+          "currencyCode": "EUR"
+        },
+        "name": "Due Today"
+      }
+    ],
+    "productOfferings": [
+      {
+        "id": "34345",
+        "name": "iPhone 7 Plus",
+        "imageUri": "",
+        "productOfferingPrice": [
+          {
+            "priceType": "recurring",
+            "price": {
+              "amount": "27.00",
+              "currencyCode": "EUR"
+            },
+            "recurringChargePeriod": "monthly",
+            "name": "Monthly Price"
+          },
+          {
+            "priceType": "nonrecurring",
+            "price": {
+              "amount": "799.00",
+              "currencyCode": "EUR"
+            },
+            "name": "Full Price"
+          }
+        ],
+        "productSpecification": {
+          "sku": "1234",
+          "color": "Black Jet",
+          "model": "iPhone 7 Plus",
+          "size": "128 GB"
+        }
+      }
+    ]
+  }
+}

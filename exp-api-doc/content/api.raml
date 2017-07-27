@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: IDP Experience
+version: v1
+baseUri: http://api.att.com/idp/
+/home:
+  get:
+    displayName: Get the data for home screen
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/exp-api-examples.json

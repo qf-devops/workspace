@@ -1,0 +1,36 @@
+podTemplate(
+    inheritFrom: "maven", 
+    label: "myJenkins", 
+    cloud: "openshift", 
+    volumes: [
+        persistentVolumeClaim(claimName: "m2repo", mountPath: "/home/jenkins/.m2/")
+    ]) {
+
+    node("myJenkins") {
+
+        @Library('github.com/redhat-helloworld-msa/jenkins-library@master') _
+        
+    
+        stage ('DEV - Image build'){
+            echo 'Building docker image and deploying to Dev'
+            buildApp('nginx-dev', "nginx")
+            echo "This is the build number: ${env.BUILD_NUMBER}"
+        }
+    
+        stage ('QA - Promote image'){
+            echo 'Deploying to QA'
+            promoteImage('nginx-dev', 'nginx-qa', 'nginx', 'latest')
+        }
+    
+        stage ('PRD - Promote image'){
+            echo 'Deploying to production'
+            promoteImage('nginx-qa', 'nginx', 'nginx', env.BUILD_NUMBER)
+        }
+
+        stage ('PRD - Canary Deploy'){
+            echo 'Performing a canary deployment'
+            canaryDeploy('nginx', 'nginx', env.BUILD_NUMBER)
+        }
+
+    }
+} 
