@@ -11,6 +11,7 @@ podTemplate(
         @Library('github.com/redhat-helloworld-msa/jenkins-library@master') _
         
     
+    	dir('exp-api-doc'){
         stage ('DEV - Image build'){
             echo 'Building docker image and deploying to Dev'
             buildApp('nginx-dev', "nginx")
@@ -31,6 +32,7 @@ podTemplate(
             echo 'Performing a canary deployment'
             canaryDeploy('nginx', 'nginx', env.BUILD_NUMBER)
         }
-
+	
+	}
     }
 } 
