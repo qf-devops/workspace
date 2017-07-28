@@ -10,7 +10,12 @@ podTemplate(
 
         @Library('github.com/redhat-helloworld-msa/jenkins-library@master') _
         
+    	 stage('Clone repository') {
+            /* Let's make sure we have the repository cloned to our workspace */
     
+            checkout scm
+        }
+	    
     	dir('exp-api-doc'){
         stage ('DEV - Image build'){
             echo 'Building docker image and deploying to Dev'
