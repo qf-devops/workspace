@@ -5,39 +5,37 @@ podTemplate(
     volumes: [
         persistentVolumeClaim(claimName: "m2repo", mountPath: "/home/jenkins/.m2/")
     ]) {
-
-    node("myJenkins") {
-
-        @Library('github.com/redhat-helloworld-msa/jenkins-library@master') _
-        
-    	 stage('Clone repository') {
+    
+    
+    node {
+        def app
+    
+        stage('Clone repository') {
             /* Let's make sure we have the repository cloned to our workspace */
     
             checkout scm
         }
-	    
+    
+    	
     	dir('exp-api-doc'){
-        stage ('DEV - Image build'){
-            echo 'Building docker image and deploying to Dev'
-            buildApp('nginx-dev', "nginx")
-            echo "This is the build number: ${env.BUILD_NUMBER}"
+        stage('Build image') {
+            /* This builds the actual image; synonymous to
+             * docker build on the command line */
+    
+            app = docker.build("getintodevops/hellonode")
         }
     
-        stage ('QA - Promote image'){
-            echo 'Deploying to QA'
-            promoteImage('nginx-dev', 'nginx-qa', 'nginx', 'latest')
+        stage('Push image') {
+            /* Finally, we'll push the image with two tags:
+             * First, the incremental build number from Jenkins
+             * Second, the 'latest' tag.
+             * Pushing multiple tags is cheap, as all the layers are reused. */
+            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                app.push("${env.BUILD_NUMBER}")
+                app.push("latest")
+            }
         }
-    
-        stage ('PRD - Promote image'){
-            echo 'Deploying to production'
-            promoteImage('nginx-qa', 'nginx', 'nginx', env.BUILD_NUMBER)
         }
-
-        stage ('PRD - Canary Deploy'){
-            echo 'Performing a canary deployment'
-            canaryDeploy('nginx', 'nginx', env.BUILD_NUMBER)
-        }
-	
-	}
-    }
-} 
+}
+          
+}
