@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hellotestdocker
+spec:
+  template:
+    metadata:
+      labels:
+        app: hellotestdocker
+    spec:
+      containers:
+      - name: hellotestdocker
+        image: prakashg84/test:hellotestdocker25
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

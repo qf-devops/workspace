@@ -1,0 +1,20 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: hellotestdocker
+  labels:
+    name: hellotestdocker
+spec:
+  containers:
+    - name: hellotestdocker
+      image: hellotest/hellotestdocker:latest
+      ports:
+        - containerPort: 8081
+      volumeMounts:
+      - mountPath: "/var/run/secrets/kubernetes.io/serviceaccount"
+        name: mypd
+
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+       claimName: myclaim-1
