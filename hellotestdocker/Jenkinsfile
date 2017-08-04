@@ -7,7 +7,7 @@ node {
       mvnHome = tool 'M3'
    }
   
-  dir('hellotest'){
+  dir('hellotestdocker'){
   stage('Build') {
       // Run the maven build
       if (isUnix()) {
@@ -22,7 +22,7 @@ node {
       if (isUnix()) {
          sh "kubectl create -f deployment.yaml"
       } else {
-         bat(kubectl create -f deployment.yaml)
+         bat("kubectl create -f deployment.yaml")
       }
    }
    
@@ -31,7 +31,7 @@ node {
       if (isUnix()) {
          sh "kubectl create -f services.yaml"
       } else {
-         bat(kubectl create -f services.yaml)
+         bat("kubectl create -f services.yaml")
       }
    }
    }
