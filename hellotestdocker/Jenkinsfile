@@ -1,10 +1,10 @@
 node {
-
   def mvnHome
   // Mark the code checkout 'stage'....
-  stage('Preparation') { 
-      git 'https://github.com/prakashg1984/workplace.git'
-      mvnHome = tool 'M3'
+  stage('Preparation') {
+   
+     git 'https://github.com/prakashg1984/workplace.git'
+     mvnHome = tool 'M3'
    }
   
   dir('hellotestdocker'){

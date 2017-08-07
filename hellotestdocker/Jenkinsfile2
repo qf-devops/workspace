@@ -1,0 +1,19 @@
+node("docker") {
+    docker.withRegistry('https://hub.docker.com/', 'prakashg84') {
+    
+        git url: 'https://github.com/prakashg1984/workplace.git'
+    
+        sh "git rev-parse HEAD > .git/commit-id"
+        def commit_id = readFile('.git/commit-id').trim()
+        println commit_id
+    
+    dir('hellotestdocker'){
+        stage "build"
+        def app = docker.build "hellotestdocker"
+    
+        stage "publish"
+        app.push 'master'
+        app.push "${commit_id}"
+    }
+    }
+}
