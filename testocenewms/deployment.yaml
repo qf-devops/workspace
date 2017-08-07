@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: testocenewms
+spec:
+  template:
+    metadata:
+      labels:
+        app: testocenewms
+    spec:
+      containers:
+      - name: testocenewms
+        image: prakashg84/test:testocenewms
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
