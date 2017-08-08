@@ -10,7 +10,7 @@
 
 	<name>hellotestdocker</name>
 	<description>Demo project for Spring Boot</description>
-	
+
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -23,8 +23,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-			<docker.registry>prakashg84/test:</docker.registry>
-		
+		<docker.registry>prakashg84/test:</docker.registry>
+
 	</properties>
 
 	<dependencies>
@@ -49,11 +49,11 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
-			 <groupId>com.spotify</groupId>
-    <artifactId>docker-maven-plugin</artifactId>
-    <version>0.4.13</version>
+			<groupId>com.spotify</groupId>
+			<artifactId>docker-maven-plugin</artifactId>
+			<version>0.4.13</version>
 		</dependency>
 	</dependencies>
 
@@ -63,88 +63,43 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			
-			<plugin>
-    <groupId>com.spotify</groupId>
-    <artifactId>docker-maven-plugin</artifactId>
-    <version>0.4.13</version>
-    <executions>
-        <execution>
-            <phase>package</phase>
-            <goals>
-                <goal>build</goal>
-            </goals>
-        </execution>
-    </executions>
-    <configuration>
-        <dockerDirectory>${project.basedir}</dockerDirectory>
-       <!--  <imageName>hellotest/${project.artifactId}</imageName> -->
-        <imageName>${docker.registry}${project.artifactId}</imageName>
-        <pushImage>true</pushImage>
-        <retryPushCount>1</retryPushCount>
-         <serverId>docker-hub</serverId>
-    </configuration>
-</plugin>
 
 			<!-- <plugin>
 				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>${version}</version>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.13</version>
 				<executions>
 					<execution>
-						<id>default</id>
+						<phase>package</phase>
 						<goals>
 							<goal>build</goal>
-							<goal>push</goal>
 						</goals>
 					</execution>
 				</executions>
 				<configuration>
-					<repository>spotify/foobar</repository>
-					<tag>${project.version}</tag>
+					<dockerDirectory>${project.basedir}</dockerDirectory>
+					<imageName>hellotest/${project.artifactId}</imageName>
+					<imageName>${docker.registry}${project.artifactId}</imageName>
+					<pushImage>true</pushImage>
+					<retryPushCount>1</retryPushCount>
+					<serverId>docker-hub</serverId>
 				</configuration>
 			</plugin> -->
-			
-			<!-- <plugin>
-    <groupId>org.jolokia</groupId>
-    <artifactId>docker-maven-plugin</artifactId>
-    <version>0.11.5</version>
-    <configuration>
-        <images>
-            <image>
-                <alias>hellotestdocker</alias>
-                <name>hellotestdocker</name>
-                <build>
-                    <from>fabric8/java-jboss-openjdk8-jdk:1.2.3</from>                    
-                    <ports>
-                        <port>8080</port>
-                    </ports>
-                </build>
-                <run>
-                    <ports>
-                        <port>8080:8080</port>
-                    </ports>
-                </run>
-            </image>
-        </images>
-    </configuration>
-    <executions>
-        <execution>
-            <id>docker:build</id>
-            <phase>package</phase>
-            <goals>
-                <goal>build</goal>
-            </goals>
-        </execution>
-        <execution>
-            <id>docker:start</id>
-            <phase>install</phase>
-            <goals>
-                <goal>start</goal>
-            </goals>
-        </execution>
-    </executions>
-</plugin> -->
+
+			<!-- <plugin> <groupId>com.spotify</groupId> <artifactId>dockerfile-maven-plugin</artifactId> 
+				<version>${version}</version> <executions> <execution> <id>default</id> <goals> 
+				<goal>build</goal> <goal>push</goal> </goals> </execution> </executions> 
+				<configuration> <repository>spotify/foobar</repository> <tag>${project.version}</tag> 
+				</configuration> </plugin> -->
+
+			<!-- <plugin> <groupId>org.jolokia</groupId> <artifactId>docker-maven-plugin</artifactId> 
+				<version>0.11.5</version> <configuration> <images> <image> <alias>hellotestdocker</alias> 
+				<name>hellotestdocker</name> <build> <from>fabric8/java-jboss-openjdk8-jdk:1.2.3</from> 
+				<ports> <port>8080</port> </ports> </build> <run> <ports> <port>8080:8080</port> 
+				</ports> </run> </image> </images> </configuration> <executions> <execution> 
+				<id>docker:build</id> <phase>package</phase> <goals> <goal>build</goal> </goals> 
+				</execution> <execution> <id>docker:start</id> <phase>install</phase> <goals> 
+				<goal>start</goal> </goals> </execution> </executions> </plugin> -->
 		</plugins>
 	</build>
 
