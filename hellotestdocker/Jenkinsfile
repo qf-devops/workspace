@@ -19,7 +19,7 @@ node {
     	
     	stage('deploy'){
     	    sh 'kubectl delete deployments hellotestdocker'
-    	    sh 'kubectl delete deployments hellotestdockerservice'
+    	    sh 'kubectl delete services hellotestdockerservice'
 	        sh 'kubectl create -f deployment.yaml --validate=false'
 	        sh 'kubectl create -f services.yaml --validate=false'
     	}
