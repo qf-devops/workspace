@@ -63,7 +63,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-			<plugin>
+			<!-- <plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.13</version>
@@ -77,13 +77,13 @@
 				</executions>
 				<configuration>
 					<dockerDirectory>${project.basedir}</dockerDirectory>
-					<!-- <imageName>hellotest/${project.artifactId}</imageName> -->
+					<imageName>hellotest/${project.artifactId}</imageName>
 					<imageName>${docker.registry}${project.artifactId}</imageName>
 					<pushImage>true</pushImage>
 					<retryPushCount>1</retryPushCount>
 					<serverId>docker-hub</serverId>
 				</configuration>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 
