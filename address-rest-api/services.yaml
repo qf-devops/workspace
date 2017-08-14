@@ -1,9 +1,9 @@
 kind: Service
 apiVersion: v1
 metadata: 
-  name: addressapiService
+  name: addressapiservice
   labels:
-    app: addressapiService
+    app: addressapiservice
 spec: 
   ports:    
      - protocol: TCP
