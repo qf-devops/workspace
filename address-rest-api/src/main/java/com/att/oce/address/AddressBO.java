@@ -17,10 +17,18 @@ public final class AddressBO {
 
     private String id;
 
-    private String description;
-
-    @NotEmpty
-    private String title;
+    private String streetNr;
+    private String streetNrSuffix;
+    private String streetNrLast;
+    private String streetNrLastSuffix;
+    private String streetName;
+    private String streetType;
+    private String streetSuffix;
+    private String postcode;
+    private String locality;
+    private String city;
+    private String stateOrProvince;
+    private String country;
 
     public AddressBO() {
 
@@ -30,33 +38,119 @@ public final class AddressBO {
         return id;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getTitle() {
-        return title;
-    }
+   
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getStreetNr() {
+		return streetNr;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setStreetNr(String streetNr) {
+		this.streetNr = streetNr;
+	}
 
-    @Override
-    public String toString() {
-        return String.format(
-                "TodoDTO[id=%s, description=%s, title=%s]",
-                this.id,
-                this.description,
-                this.title
-        );
-    }
+	public String getStreetNrSuffix() {
+		return streetNrSuffix;
+	}
+
+	public void setStreetNrSuffix(String streetNrSuffix) {
+		this.streetNrSuffix = streetNrSuffix;
+	}
+
+	public String getStreetNrLast() {
+		return streetNrLast;
+	}
+
+	public void setStreetNrLast(String streetNrLast) {
+		this.streetNrLast = streetNrLast;
+	}
+
+	public String getStreetNrLastSuffix() {
+		return streetNrLastSuffix;
+	}
+
+	public void setStreetNrLastSuffix(String streetNrLastSuffix) {
+		this.streetNrLastSuffix = streetNrLastSuffix;
+	}
+
+	public String getStreetName() {
+		return streetName;
+	}
+
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
+
+	public String getStreetType() {
+		return streetType;
+	}
+
+	public void setStreetType(String streetType) {
+		this.streetType = streetType;
+	}
+
+	public String getStreetSuffix() {
+		return streetSuffix;
+	}
+
+	public void setStreetSuffix(String streetSuffix) {
+		this.streetSuffix = streetSuffix;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+	public String getLocality() {
+		return locality;
+	}
+
+	public void setLocality(String locality) {
+		this.locality = locality;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getStateOrProvince() {
+		return stateOrProvince;
+	}
+
+	public void setStateOrProvince(String stateOrProvince) {
+		this.stateOrProvince = stateOrProvince;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	@Override
+	public String toString() {
+		return "AddressBO [id=" + id + ", streetNr=" + streetNr
+				+ ", streetNrSuffix=" + streetNrSuffix + ", streetNrLast="
+				+ streetNrLast + ", streetNrLastSuffix=" + streetNrLastSuffix
+				+ ", streetName=" + streetName + ", streetType=" + streetType
+				+ ", streetSuffix=" + streetSuffix + ", postcode=" + postcode
+				+ ", locality=" + locality + ", city=" + city
+				+ ", stateOrProvince=" + stateOrProvince + ", country="
+				+ country + "]";
+	}
+
+    
 }

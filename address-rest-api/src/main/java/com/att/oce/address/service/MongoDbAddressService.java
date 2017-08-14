@@ -36,8 +36,18 @@ final class MongoDBAddressService implements AddressService {
         LOGGER.info("Creating a new Address entry with information: {}", address);
 
         Address persisted = Address.getBuilder()
-                .title(address.getTitle())
-                .description(address.getDescription())
+                .streetNr(address.getStreetNr())
+                .streetNrSuffix(address.getStreetNrSuffix())
+                .streetNrLast(address.getStreetNrLast())
+                .streetNrLastSuffix(address.getStreetNrLastSuffix())
+                .streetName(address.getStreetName())
+                .streetType(address.getStreetType())
+                .streetSuffix(address.getStreetSuffix())
+                .postcode(address.getPostcode())
+                .locality(address.getLocality())
+                .city(address.getCity())
+                .stateOrProvince(address.getStateOrProvince())
+                .country(address.getCountry())
                 .build();
 
         persisted = repository.save(persisted);
@@ -87,7 +97,8 @@ final class MongoDBAddressService implements AddressService {
         LOGGER.info("Updating Address entry with information: {}", Address);
 
         Address updated = findAddressById(Address.getId());
-        updated.update(Address.getTitle(), Address.getDescription());
+        updated.update(Address.getStreetNr(), Address.getStreetNrSuffix(), Address.getStreetNrLast(), Address.getStreetNrLastSuffix(), Address.getStreetName(), 
+        		Address.getStreetType(), Address.getStreetSuffix(), Address.getPostcode(), Address.getLocality(), Address.getCity(), Address.getStateOrProvince(), Address.getCountry());
         updated = repository.save(updated);
 
         LOGGER.info("Updated Address entry with information: {}", updated);
@@ -105,8 +116,18 @@ final class MongoDBAddressService implements AddressService {
         AddressBO dto = new AddressBO();
 
         dto.setId(model.getId());
-        dto.setTitle(model.getTitle());
-        dto.setDescription(model.getDescription());
+        dto.setStreetNr(model.getStreetNr());
+        dto.setStreetNrSuffix(model.getStreetNrSuffix());
+        dto.setStreetNrLast(model.getStreetNrLast());
+        dto.setStreetNrLastSuffix(model.getStreetNrLastSuffix());
+        dto.setStreetName(model.getStreetName());
+        dto.setStreetType(model.getStreetType());
+        dto.setStreetSuffix(model.getStreetSuffix());
+        dto.setPostcode(model.getPostcode());
+        dto.setLocality(model.getLocality());
+        dto.setCity(model.getCity());
+        dto.setStateOrProvince(model.getStateOrProvince());
+        dto.setCountry(model.getCountry());
 
         return dto;
     }
@@ -120,8 +141,18 @@ final class MongoDBAddressService implements AddressService {
         AddressBO dto = new AddressBO();
 
         dto.setId(address.getId());
-        dto.setTitle(address.getTitle());
-        dto.setDescription(address.getDescription());
+        dto.setStreetNr(address.getStreetNr());
+        dto.setStreetNrSuffix(address.getStreetNrSuffix());
+        dto.setStreetNrLast(address.getStreetNrLast());
+        dto.setStreetNrLastSuffix(address.getStreetNrLastSuffix());
+        dto.setStreetName(address.getStreetName());
+        dto.setStreetType(address.getStreetType());
+        dto.setStreetSuffix(address.getStreetSuffix());
+        dto.setPostcode(address.getPostcode());
+        dto.setLocality(address.getLocality());
+        dto.setCity(address.getCity());
+        dto.setStateOrProvince(address.getStateOrProvince());
+        dto.setCountry(address.getCountry());
         
         addressBOList.add(dto);
     	}
