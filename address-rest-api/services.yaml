@@ -1,14 +1,14 @@
 kind: Service
 apiVersion: v1
 metadata: 
-  name: addressAPIService
+  name: addressapiService
   labels:
-    app: addressAPIService
+    app: addressapiService
 spec: 
   ports:    
      - protocol: TCP
        port: 8085
        targetPort: 8080
   selector: 
-      app: addressAPI   
+      app: addressapi   
   type: NodePort

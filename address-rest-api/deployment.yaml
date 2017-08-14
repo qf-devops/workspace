@@ -1,15 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: addressAPI
+  name: addressapi
 spec:
   template:
     metadata:
       labels:
-        app: addressAPI
+        app: addressapi
     spec:
       containers:
-      - name: testocenewms
+      - name: addressapi
         image: prakashg84/test:address-rest-api
         imagePullPolicy: IfNotPresent
         ports:
