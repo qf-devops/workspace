@@ -50,13 +50,13 @@ public class AppConfig {
     private ApiInfo apiInfo()
     {
         ApiInfo apiInfo = new ApiInfo(
-                "My Project's REST API",
-                "This is a description of your API.",
+                "Address Management Service",
+                "This API is used to perform CURD operation on Address",
                 "version-1",
-                "API TOS",
-                "me@wherever.com",
-                "API License",
-                "API License URL"
+                "ATT",
+                "pg939j@att.com",
+                "ATT License",
+                "ATT Licenst URL"
         );
         return apiInfo;
     }
