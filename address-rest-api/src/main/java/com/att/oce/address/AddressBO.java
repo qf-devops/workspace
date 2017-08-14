@@ -1,0 +1,62 @@
+package com.att.oce.address;
+
+import io.swagger.annotations.ApiModel;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Size;
+
+/**
+ * This data transfer object contains the information of a single todo
+ * entry and specifies validation rules that are used to ensure that only
+ * valid information can be saved to the used database.
+ * @author pg939j
+ */
+@ApiModel(value = "Address Request", description = "the event data in input payload")
+public final class AddressBO {
+
+    private String id;
+
+    private String description;
+
+    @NotEmpty
+    private String title;
+
+    public AddressBO() {
+
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "TodoDTO[id=%s, description=%s, title=%s]",
+                this.id,
+                this.description,
+                this.title
+        );
+    }
+}

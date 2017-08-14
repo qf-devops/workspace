@@ -1,0 +1,39 @@
+node {
+  def mvnHome
+  // Mark the code checkout 'stage'....
+  stage('Preparation') {
+   
+     git 'https://github.com/prakashg1984/workplace.git'
+     mvnHome = tool 'M3'
+   }
+  
+  dir('address-rest-api'){
+  stage('Build') {
+      // Run the maven build
+      if (isUnix()) {
+         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+      } else {
+         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean install/)
+      }
+   }
+   
+   stage('Deploy') {
+      // Run the maven build
+      if (isUnix()) {
+         sh "kubectl create -f deployment.yaml"
+      } else {
+         bat("kubectl create -f deployment.yaml")
+      }
+   }
+   
+    stage('Deploy') {
+      // Run the maven build
+      if (isUnix()) {
+         sh "kubectl create -f services.yaml"
+      } else {
+         bat("kubectl create -f services.yaml")
+      }
+   }
+   }
+  
+ }
