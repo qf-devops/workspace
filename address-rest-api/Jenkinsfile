@@ -19,7 +19,7 @@ node {
     	
     	stage('deploy'){
     	    sh 'kubectl delete deployments addressapi || true' 
-    	    sh 'kubectl delete services addressapiService || true'
+    	    sh 'kubectl delete services addressapiservice || true'
 	        sh 'kubectl create -f deployment.yaml --validate=false'
 	        sh 'kubectl create -f services.yaml --validate=false'
     	}
