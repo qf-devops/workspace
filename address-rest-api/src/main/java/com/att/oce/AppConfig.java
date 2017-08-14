@@ -55,7 +55,7 @@ public class AppConfig {
                 "version-1",
                 "API ATT",
                 "pg939j@att.com",
-                "ATT License""
+                "ATT License"
         );
         return apiInfo;
     }
