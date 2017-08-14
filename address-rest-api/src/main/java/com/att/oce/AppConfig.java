@@ -53,9 +53,10 @@ public class AppConfig {
                 "Address Management Service",
                 "This API is used to perform CURD operation on Address",
                 "version-1",
-                "API ATT",
+                "ATT",
                 "pg939j@att.com",
-                "ATT License"
+                "ATT License",
+                "ATT Licenst URL"
         );
         return apiInfo;
     }
