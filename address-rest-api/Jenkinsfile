@@ -1,39 +1,28 @@
 node {
-  def mvnHome
-  // Mark the code checkout 'stage'....
-  stage('Preparation') {
-   
-     git 'https://github.com/prakashg1984/workplace.git'
-     mvnHome = tool 'M3'
-   }
-  
-  dir('address-rest-api'){
-  stage('Build') {
-      // Run the maven build
-      if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
-      } else {
-         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean install/)
-      }
-   }
-   
-   stage('Deploy') {
-      // Run the maven build
-      if (isUnix()) {
-         sh "kubectl create -f deployment.yaml"
-      } else {
-         bat("kubectl create -f deployment.yaml")
-      }
-   }
-   
-    stage('Deploy') {
-      // Run the maven build
-      if (isUnix()) {
-         sh "kubectl create -f services.yaml"
-      } else {
-         bat("kubectl create -f services.yaml")
-      }
-   }
-   }
-  
- }
+    docker.withRegistry('https://hub.docker.com/', 'docker-hub-credentials') {
+        def mvnHome
+        mvnHome = tool 'M3'
+        git url: 'https://github.com/prakashg1984/workplace.git'
+    
+        sh "git rev-parse HEAD > .git/commit-id"
+        def commit_id = readFile('.git/commit-id').trim()
+        println commit_id
+    
+    dir('address-rest-api'){
+        stage('build and push'){
+	        sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+	        sh 'docker login --username prakashg84 --password kashprag0712'
+	        sh ("docker build -t address-rest-api .")
+	        sh ("docker tag  address-rest-api prakashg84/test:address-rest-api")
+	        sh ("docker push prakashg84/test:address-rest-api")
+    	}
+    	
+    	stage('deploy'){
+    	    sh 'kubectl delete deployments addressAPI || true' 
+    	    sh 'kubectl delete services addressAPIService || true'
+	        sh 'kubectl create -f deployment.yaml --validate=false'
+	        sh 'kubectl create -f services.yaml --validate=false'
+    	}
+    }
+    }
+}

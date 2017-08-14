@@ -16,8 +16,8 @@
        <!--  <swagger.directory>${basedir}/target/classes/META-INF/resources/swagger</swagger.directory>
 		<icd.file>service.json</icd.file>
 		<icd.package>com.att.oce.address.rest</icd.package> -->
-		<docker.registry>prakashg84/test:</docker.registry>
-    </properties>
+<!-- 		<docker.registry>prakashg84/test:</docker.registry>
+ -->    </properties>
 
     <!-- Inherit defaults from Spring Boot -->
     <parent>
@@ -131,11 +131,11 @@
     <version>1.2.0</version>
 </dependency>
 
-<dependency>
+<!-- <dependency>
 			<groupId>com.spotify</groupId>
 			<artifactId>docker-maven-plugin</artifactId>
 			<version>0.4.13</version>
-		</dependency>
+		</dependency> -->
         
     </dependencies>
 
@@ -147,7 +147,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             
-            <plugin>
+           <!--  <plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.13</version>
@@ -166,7 +166,7 @@
 					<retryPushCount>1</retryPushCount>
 					<serverId>docker-hub</serverId>
 				</configuration>
-			</plugin>
+			</plugin> -->
             
 <!--             <plugin>
 				<groupId>com.github.kongchen</groupId>
