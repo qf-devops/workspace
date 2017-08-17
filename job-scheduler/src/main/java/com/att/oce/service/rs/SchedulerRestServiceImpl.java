@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.att.oce.model.JobSchedulerRequest;
 import com.att.oce.model.JobSchedulerResponse;
+import com.att.oce.model.JobStatus;
 import com.att.oce.service.JobSchedulerService;
 
 @RestController
@@ -49,5 +50,13 @@ public class SchedulerRestServiceImpl implements SchedulerRestService {
 		return Response.ok().entity("Scheduler started succesfully!").build();
 	}
 
+	
+	@Override
+	@RequestMapping(method = RequestMethod.POST, value = "/updateStatus")
+	public Response updateSchedulerResponse(@RequestBody JobStatus jobStatus) {
+
+		jobSchedulerService.updateSchedulerResponse(jobStatus);
+		return Response.ok().entity(jobStatus).build();
+	}
 	
 }

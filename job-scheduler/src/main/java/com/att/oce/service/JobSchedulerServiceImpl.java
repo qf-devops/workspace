@@ -3,6 +3,7 @@ package com.att.oce.service;
 import java.util.Date;
 
 import com.att.oce.listener.ScheduleJobListener;
+
 import org.quartz.*;
 import org.quartz.impl.matchers.KeyMatcher;
 import org.slf4j.Logger;
@@ -11,11 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.att.oce.db.JobSchedulerTemplate;
 import com.att.oce.job.ScheduleJob;
 import com.att.oce.model.JobData;
 import com.att.oce.model.JobEvent;
 import com.att.oce.model.JobSchedulerRequest;
 import com.att.oce.model.JobSchedulerResponse;
+import com.att.oce.model.JobStatus;
 import com.att.oce.util.JobSchedulerConstant;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,6 +33,9 @@ public class JobSchedulerServiceImpl implements JobSchedulerService {
 
 	@Autowired
 	private JdbcTemplate jobJdbcTemplate;
+	
+	@Autowired
+	private JobSchedulerTemplate jobSchedulerTemplate;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -119,6 +125,13 @@ public class JobSchedulerServiceImpl implements JobSchedulerService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+
+
+	@Override
+	public void updateSchedulerResponse(JobStatus jobStatus) {
+		jobSchedulerTemplate.updateJobStatus(jobStatus);
 		
 	}
 

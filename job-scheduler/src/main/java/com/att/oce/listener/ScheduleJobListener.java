@@ -23,8 +23,8 @@ public class ScheduleJobListener implements JobListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(ScheduleJobListener.class);
 
-    private String jobInsertQuery = "INSERT INTO JOB_HISTORY (JOB_NAME, JOB_DESC, FIRE_TIME, CORRELATION_ID) VALUES (?, ?, ?, ?)";
-    private String jobUpdateQuery = "UPDATE JOB_HISTORY SET END_TIME = ? where CORRELATION_ID = ?";
+    private String jobInsertQuery = "INSERT INTO JOB_HISTORY (JOB_NAME, JOB_DESC, FIRE_TIME, CORRELATION_ID , STATUS) VALUES (?, ?, ?, ?, ?)";
+    private String jobUpdateQuery = "UPDATE JOB_HISTORY SET STATUS = ? where CORRELATION_ID = ?";
 
     private JdbcTemplate jobJdbcTemplate;
 
@@ -48,7 +48,7 @@ public class ScheduleJobListener implements JobListener {
         Date fireTime = getGMTTime(jobExecutionContext.getFireTime());
         try {
             jobJdbcTemplate.update(jobInsertQuery, new Object[]{jobName,
-                    jobDescription, fireTime, correlationId
+                    jobDescription, fireTime, correlationId , "TRIGGERED"
             });
         } catch (DataAccessException ex) {
             LOG.error("Failed to insert job initialization data to store.", ex);
@@ -65,12 +65,8 @@ public class ScheduleJobListener implements JobListener {
     public void jobWasExecuted(JobExecutionContext jobExecutionContext, JobExecutionException e) {
         LOG.info("Updating job execution end date time in the store");
         String correlationId = (String) jobExecutionContext.get("correlationId");
-        long jobRunTime = jobExecutionContext.getJobRunTime();
-        long jobFireTime = jobExecutionContext.getFireTime().getTime();
-        Date totalTimeTaken = new Date(jobRunTime + jobFireTime);
-        Date totalTimeTakenInGmt = getGMTTime(totalTimeTaken);
         try {
-            jobJdbcTemplate.update(jobUpdateQuery, new Object[]{totalTimeTakenInGmt, correlationId});
+            jobJdbcTemplate.update(jobUpdateQuery, new Object[]{"STARTED", correlationId});
         } catch (DataAccessException ex) {
             LOG.error("Failed to update job completion data to store.", ex);
         }

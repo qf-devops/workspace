@@ -1,9 +1,7 @@
 package com.att.oce.job;
 
-import java.util.HashMap;
 
 import com.att.oce.service.RestClientService;
-import com.att.oce.service.SampleService;
 import com.att.oce.util.JobSchedulerConstant;
 
 import org.quartz.Job;
@@ -26,7 +24,7 @@ public class ScheduleJob implements Job {
     	JobDataMap jobDataMap = jobExecutionContext.getJobDetail().getJobDataMap();
     	
     	restClientService.invokeRestService(jobDataMap.getString(JobSchedulerConstant.API_URL), jobDataMap.getString(JobSchedulerConstant.API_METHOD) , 
-    			jobDataMap.getString(JobSchedulerConstant.JOB_DATA));
+    			jobDataMap.getString(JobSchedulerConstant.JOB_DATA) , (String) jobExecutionContext.get("correlationId"));
         
     }
 }

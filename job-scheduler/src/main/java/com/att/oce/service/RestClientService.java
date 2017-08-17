@@ -8,9 +8,13 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.att.oce.db.JobSchedulerTemplate;
+import com.att.oce.model.JobStatus;
 import com.att.oce.util.JobSchedulerConstant;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,12 +22,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RestClientService {
 
     private static final Logger LOG = LoggerFactory.getLogger(RestClientService.class);
-
+    
+  /*  @Autowired
+	private JobSchedulerTemplate jobSchedulerTemplate;
+*/
     @SuppressWarnings("unused")
-	public void invokeRestService(String apiUrl,String apiMethod, String data) {
+	public void invokeRestService(String apiUrl,String apiMethod, String data, String correlationId) {
     	DefaultHttpClient httpClient = new DefaultHttpClient();
     	ObjectMapper mapper = new ObjectMapper();
-    	
+    	JobStatus jobStatus = new JobStatus();
     	if(apiMethod.equalsIgnoreCase(JobSchedulerConstant.METHOD_POST)){
     		HttpPost httpRequest = new HttpPost(apiUrl);
         	String inputData;
@@ -35,6 +42,7 @@ public class RestClientService {
     				httpRequest.setEntity(entity);
     			}
     			HttpResponse response = httpClient.execute(httpRequest);
+    			LOG.info("response : "+response.getEntity());
     		} catch (Exception e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
@@ -43,7 +51,7 @@ public class RestClientService {
     		try {
     			HttpGet httpRequest = new HttpGet(apiUrl);
     			HttpResponse response = httpClient.execute(httpRequest);
-    			System.out.println("response : "+response.getEntity());
+    			LOG.info("response : "+response.getEntity());
     		} catch (Exception e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
@@ -59,15 +67,16 @@ public class RestClientService {
     				httpRequest.setEntity(entity);
     			}
     			HttpResponse response = httpClient.execute(httpRequest);
+    			LOG.info("response : "+response.getEntity());
     		} catch (Exception e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
-    	}
-    		
+    	}    		
     	
-    
-		
-    	
+    	/*jobStatus.setCorrelationId(correlationId);
+    	jobStatus.setJobStatus("STARTED");
+    	jobSchedulerTemplate.updateJobStatus(jobStatus);*/
+
     }
 }
