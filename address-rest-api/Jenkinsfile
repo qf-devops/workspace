@@ -1,8 +1,9 @@
 node {
     docker.withRegistry('https://hub.docker.com/', 'docker-hub-credentials') {
-    
+    	def mvnHome
+    	
     	stage('checkout'){
-        def mvnHome
+        
         mvnHome = tool 'M3'
         git url: 'https://github.com/prakashg1984/workplace.git'
     
