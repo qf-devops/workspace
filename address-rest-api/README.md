@@ -1,1 +1,1 @@
-This is a sample CRUD API of Address entity using Spring Boot and Mongo DB
+This is a sample CURD API of Address entity using Spring Boot and Mongo DB
