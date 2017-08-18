@@ -8,26 +8,26 @@ import java.util.Optional;
 import com.att.oce.address.*;
 
 /**
- * This repository provides CRUD operations for {@link com.javaadvent.bootrest.todo.Todo}
- * objects.
+ * This repository provides CRUD operations for Address Objects
+ * 
  * @author pg939j
  */
 public interface AddressRepository extends Repository<Address, String> {
 
     /**
-     * Deletes a todo entry from the database.
-     * @param deleted   The deleted todo entry.
+     * Deletes a Address entry from the database.
+     * @param deleted   The deleted Address entry.
      */
     void delete(Address deleted);
 
     /**
-     * Finds all todo entries from the database.
-     * @return  The information of all todo entries that are found from the database.
+     * Finds all Address entries from the database.
+     * @return  The information of all Address entries that are found from the database.
      */
     List<Address> findAll();
 
     /**
-     * Finds the information of a single todo entry.
+     * Finds the information of a single Address entry.
      * @param id    The id of the requested todo entry.
      * @return      The information of the found todo entry. If no todo entry
      *              is found, this method returns an empty {@link java.util.Optional} object.
@@ -35,9 +35,9 @@ public interface AddressRepository extends Repository<Address, String> {
     Optional<Address> findOne(String id);
 
     /**
-     * Saves a new todo entry to the database.
-     * @param saved The information of the saved todo entry.
-     * @return      The information of the saved todo entry.
+     * Saves a new Address entry to the database.
+     * @param saved The information of the saved Address entry.
+     * @return      The information of the saved Address entry.
      */
     Address save(Address saved);
 }
