@@ -16,7 +16,7 @@ import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 
 /**
- * This service class saves {@link com.javaadvent.bootrest.Address.Address} objects
+ * This service class saves Address objects
  * to MongoDB database.
  * @author pg939j
  */
