@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: testocenewproject
+spec:
+  template:
+    metadata:
+      labels:
+        app: testocenewproject
+    spec:
+      containers:
+      - name: testocenewproject
+        image: ${docker.registry}:testocenewproject
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
