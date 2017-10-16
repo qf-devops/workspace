@@ -35,7 +35,7 @@ public class AddressCreateHandlerTest {
         AddressCreateHandler handler = new AddressCreateHandler();
         Context ctx = createContext();
 
-        String output = handler.handleRequest(input, ctx);
+        String output = handler.handleRequest((AddressBO)input, ctx);
 
         // TODO: validate output here if needed.
         Assert.assertEquals("Hello from Lambda!", output);
