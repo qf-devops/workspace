@@ -15,16 +15,12 @@ node {
     dir('testnewproject'){
         stage('build'){
 	        sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
-	        sh 'docker login --username prakashg84 --password kashprag0712'
-	        sh ("docker build -t testnewproject .")
-	        sh ("docker tag  testnewproject prakashg84/test:testnewproject")
-	        sh ("docker push prakashg84/test:testnewproject")
     	}
     	
     	stage('create docker image'){
 		        sh 'docker login --username prakashg84 --password kashprag0712'
 		        sh ("docker build -t testnewproject .")
-		        sh ("docker tag  address-rest-api prakashg84/test:address-rest-api")
+		        sh ("docker tag  testnewproject prakashg84/test:testnewproject")
     	}
     	
     	stage('push docker image'){
